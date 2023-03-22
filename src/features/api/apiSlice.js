@@ -1,20 +1,20 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-const key = process.env.REACT_APP_KEY;
+const url = process.env.REACT_APP_URL;
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://newsapi.org/v2"
+        baseUrl: url
     }),
     endpoints: builder => ({
         getFeatured: builder.query({
-            query: () => `/top-headlines?country=us&pageSize=10&apiKey=${key}`
+            query: () => '/trending'
         }),
         getArticleFromSource: builder.query({
-            query: (source) => `/everything?sources=${source}&pageSize=20&apiKey=${key}`
+            query: (source) => `/articles?source=${source}`
         }),
         getSources: builder.query({
-            query: () => `/top-headlines/sources?country=us&pageSize=15&apiKey=${key}`
+            query: () => `/sources`
         })
     })
 })

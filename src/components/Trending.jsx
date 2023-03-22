@@ -2,6 +2,7 @@ import { useGetFeaturedQuery } from "../features/api/apiSlice";
 import NewsList from "./NewsList";
 import Source from "./Sources";
 
+
 export default function Trending({
   search,
   setSelectedArticle,
