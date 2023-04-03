@@ -9,10 +9,10 @@ export default function Article({
 }) {
   return (
     <div className="pt-8 pb-8">
-      <Back onClick={viewTrending} />
+      <Back handleClick={viewTrending} />
       <h1 className="font-medium text-[36px] leading-[1.2] my-5">{title}</h1>
       <div>
-        <img src={src} className="w-full aspect-[5/2] object-cover" alt="" />
+        <img src={src} className="w-full aspect-[5/2] object-cover" alt="article" />
         <div className="flex flex-col sm:flex-row justify-between mt-8 gap-5">
           <p className="w-full sm:w-1/2 md:w-2/3 lg:w-[40%]">{description}</p>
           <a

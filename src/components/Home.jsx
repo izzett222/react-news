@@ -60,7 +60,6 @@ export default function Home() {
           description={selectedArticle.description}
           link={selectedArticle.url}
           src={selectedArticle.urlToImage}
-          onClick={() => {}}
         />
       )}
       {selected.length > 0 && !selectedArticle && selected !== "trending" && (

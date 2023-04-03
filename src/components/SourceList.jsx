@@ -29,7 +29,7 @@ export default function SourceList({
   ) : (
     <>
       <div className="-ml-2">
-        <Back onClick={() => setSelected("trending")} />
+        <Back handleClick={() => setSelected("trending")} />
       </div>
       <NewsList
         news={articles?.articles}
