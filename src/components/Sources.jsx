@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetSourcesQuery } from "../features/api/apiSlice"
 
 export default function Source({ openSource }) {
@@ -12,7 +13,7 @@ export default function Source({ openSource }) {
     return <div className="pt-[54px]">
         <h2 className="text-[26px] mb-2 leading-[1.3]">Sources</h2>
         <ol className="list-decimal grid md:grid-cols-2 lg:grid-cols-3 text-[#434343] font-medium text-[22px] pl-8">
-            {data?.sources.map(el => <li key={el.id}><button className="hover:underline" onClick={() => openSource(el.id)}>{el.name}</button></li>)}
+            {data?.sources.map(source => <li key={source.id}><Link to={`/source/${source.id}`} className="hover:underline">{source.name}</Link></li>)}
         </ol>
     </div>
 }

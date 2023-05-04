@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { nanoid } from "@reduxjs/toolkit";
 
 const url = process.env.REACT_APP_URL;
 export const apiSlice = createApi({
@@ -8,17 +9,25 @@ export const apiSlice = createApi({
     }),
     endpoints: builder => ({
         getFeatured: builder.query({
-            query: () => '/trending'
+            query: () => '/trending',
+            transformResponse: (response) => {
+                const articles = response.articles;
+                return articles.map(article => ({ ...article, id: nanoid() }))
+            }
         }),
         getArticleFromSource: builder.query({
-            query: (source) => `/articles?source=${source}`
+            query: (source) => `/articles?source=${source}`,
+            transformResponse: (response) => {
+                const articles = response.articles;
+                return articles.map(article => ({ ...article, id: nanoid() }))
+            }
         }),
         getSources: builder.query({
             query: () => `/sources`
         })
     })
 })
-export const { 
+export const {
     useGetFeaturedQuery,
     useGetArticleFromSourceQuery,
     useGetSourcesQuery,

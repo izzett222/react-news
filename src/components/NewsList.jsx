@@ -1,16 +1,17 @@
-export default function NewsList({ title, news, search, setSelectedArticle }) {
+import { Link } from "react-router-dom";
+export default function NewsList({ title, news, search, isTrending }) {
   const filteredNews = news?.filter((el) => el.title.includes(search));
   return (
     <div>
       <h2 className="text-[30px] tracking-[-2px] font-medium mb-2">{title}</h2>
       <div className="grid min-[450px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {filteredNews?.length > 0 ? (
-          filteredNews?.map((el, i) => {
+          filteredNews?.map((el) => {
             return (
-              <div
-                key={i}
+              <Link
+                key={el.id}
+                to={`${ isTrending ? '/' : ''}article/${el.id}`}
                 className="group hover:cursor-pointer"
-                onClick={() => setSelectedArticle(el)}
               >
                 <div className="aspect-square">
                   <img
@@ -23,7 +24,7 @@ export default function NewsList({ title, news, search, setSelectedArticle }) {
                 <p className="h-[46px] overflow-hidden text-ellipsis duration-200 block group-hover:underline group-hover:cursor-pointer">
                   {el.title}
                 </p>
-              </div>
+              </Link>
             );
           })
         ) : (

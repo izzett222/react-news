@@ -21,10 +21,9 @@ export default function Trending({
   return (
     <div>
       <NewsList
-        news={news?.articles}
+        news={news}
         search={search}
         setSelectedArticle={setSelectedArticle}
-        viewTrending={viewTrending}
         title={selected}
       />
       <div>
