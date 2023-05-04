@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Nunito', ...fontFamily.sans],
+        sans: ['Albert Sans', ...fontFamily.sans],
       },
       gridTemplateRows: {
         fluid: "repeat(auto-fill, 40px)"

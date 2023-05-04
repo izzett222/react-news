@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import Article from "./pages/Article";
 import Source from "./pages/sources/Source";
 import SourceArticle from "./pages/sources/SourceArticle"
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLDivElement

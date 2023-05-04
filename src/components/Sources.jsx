@@ -1,19 +1,51 @@
 import { Link } from "react-router-dom";
-import { useGetSourcesQuery } from "../features/api/apiSlice"
+import { useGetSourcesQuery } from "../features/api/apiSlice";
+import Slider from "react-slick";
+import arrow from "../assets/arrow.svg";
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
-export default function Source({ openSource }) {
-    const { data, isError } = useGetSourcesQuery()
-    if (isError) {
+export default function Source() {
+  const { data, isError } = useGetSourcesQuery();
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    variableWidth: true
+  };
+  if (isError) {
     return (
       <div className="flex flex-1 w-full items-center justify-center">
         <h2 className="text-2xl font-medium">No article found</h2>
       </div>
     );
   }
-    return <div className="pt-[54px]">
-        <h2 className="text-[26px] mb-2 leading-[1.3]">Sources</h2>
-        <ol className="list-decimal grid md:grid-cols-2 lg:grid-cols-3 text-[#434343] font-medium text-[22px] pl-8">
-            {data?.sources.map(source => <li key={source.id}><Link to={`/source/${source.id}`} className="hover:underline">{source.name}</Link></li>)}
-        </ol>
+  return (
+    <div className="border-b-[0.6px] border-b-[#C9C8B2] flex pb-2.5 mb-4">
+      <img src={arrow} alt="" className="rotate-180 -ml-2" />
+      <div className="flex-1 max-w-[97%]">
+        <div className="w-full">
+        <Slider {...settings}>
+
+          {data?.sources.map((source) => (
+            <div key={source.id}>
+              <Link
+                
+                to={`/source/${source.id}`}
+                className="hover:underline w-max mx-2.5 inline-block"
+              >
+                {source.name}
+              </Link>
+            </div>
+          ))}
+        </Slider>
+        </div>
+
+      </div>
+
+      <img src={arrow} alt="" />
     </div>
+  );
 }
