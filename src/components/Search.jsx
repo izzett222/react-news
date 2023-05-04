@@ -1,0 +1,15 @@
+export default function Search({ search, setSearch }) {
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
+  return (
+    <div className="pt-4 min-[460px]:pt-[48px] min-[460px]:pl-7 md:px-7 flex-1">
+      <input
+        placeholder={"Search any article"}
+        className={`border-[#E7E4EF] border-[1.5px] rounded-xl w-full md:w-[450px] h-[54px] text-lg indent-6 bg-[#FAFAFA]`}
+        onChange={handleChange}
+        value={search}
+      />
+    </div>
+  );
+}
