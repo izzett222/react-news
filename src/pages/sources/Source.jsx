@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetArticleFromSourceQuery } from "../../features/api/apiSlice";
+import { useGetArticleFromSourceQuery, useGetSourcesQuery } from "../../features/api/apiSlice";
 import Back from "../../components/Back";
 import NewsList from "../../components/NewsList";
 import { FadeLoader } from "react-spinners";
@@ -12,6 +12,8 @@ export default function Source() {
     isLoading,
     isError,
   } = useGetArticleFromSourceQuery(sourceId);
+  const { data } = useGetSourcesQuery()
+  const source = data.find((source) => source.id === sourceId);
   console.log(articles, '===================')
   if (isError) {
     return (
@@ -34,7 +36,7 @@ export default function Source() {
         search={""}
         setSelectedArticle={{}}
         viewTrending={() => {}}
-        title={"source"}
+        title={source?.name}
       />
     </>
   );

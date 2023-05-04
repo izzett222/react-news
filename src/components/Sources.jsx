@@ -29,7 +29,7 @@ export default function Source() {
         <div className="w-full">
         <Slider {...settings}>
 
-          {data?.sources.map((source) => (
+          {data?.map((source) => (
             <div key={source.id}>
               <Link
                 

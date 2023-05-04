@@ -12,6 +12,7 @@ export const apiSlice = createApi({
             query: () => '/trending',
             transformResponse: (response) => {
                 const articles = response.articles;
+                console.log(articles, '=========    ')
                 return articles.map(article => ({ ...article, id: nanoid() }))
             }
         }),
@@ -23,7 +24,10 @@ export const apiSlice = createApi({
             }
         }),
         getSources: builder.query({
-            query: () => `/sources`
+            query: () => `/sources`,
+            transformResponse: (response) => {
+                return response.sources;
+            }
         })
     })
 })

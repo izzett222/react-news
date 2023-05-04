@@ -7,7 +7,6 @@ export default function SourceArticle() {
     const navigate = useNavigate()
     console.log(articleId, sourceId);
     const { data:articles } = useGetArticleFromSourceQuery(sourceId);
-    console.log(articles, '===================')
     const article = articles.find((article) => article.id === articleId);
   return (
     <div className="pt-8 pb-8">
