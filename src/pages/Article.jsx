@@ -1,30 +1,45 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Back from "../components/Back";
 import { useGetFeaturedQuery } from "../features/api/apiSlice";
 
 export default function Article() {
-    const { articleId } = useParams();
-    const navigate = useNavigate()
-    console.log(articleId);
-    const { data:articles } = useGetFeaturedQuery();
-    const article = articles.find((article) => article.id === articleId);
+  const { articleId } = useParams();
+  const navigate = useNavigate();
+
+  const { data: articles } = useGetFeaturedQuery();
+  const article = articles.find((article) => article.id === articleId);
+  console.log(
+    articleId,
+    article.content,
+    article.content.length,
+    "===================="
+  );
+  const regex = /\[.*\]$/g
   return (
-    <div className="pt-8 pb-8">
-      <Back handleClick={()=>{ navigate("..")}} />
-      <h1 className="font-medium text-[36px] leading-[1.2] my-5">{article.title}</h1>
+    <div className="pt-8 pb-8 text-[#4C4E4D]">
+      <Back
+        handleClick={() => {
+          navigate("..");
+        }}
+      />
+      <h1 className="font-medium text-[54px] leading-[1.1] mt-9 mb-3">
+        {article.title}
+      </h1>
+      <p>
+        <span className="font-medium">By </span>
+        {article.author} | {article.publishedAt.slice(0, 10)}
+      </p>
+      <div className="my-8 gap-5 w-[70%]">
+        <p className="w-full">{article.content.replace(regex, "")}</p>
+        <Link target="_blank" className="bg-[#FFF200] font-bold text-xl px-4 py-2.5 mt-8 mb-4 inline-block" to={article.url}>Read more</Link>
+      </div>
+
       <div>
-        <img src={article.urlToImage} className="w-full aspect-[5/2] object-cover" alt="article" />
-        <div className="flex flex-col sm:flex-row justify-between mt-8 gap-5">
-          <p className="w-full sm:w-1/2 md:w-2/3 lg:w-[40%]">{article.description}</p>
-          <a
-            href={article.url}
-            target="_blank"
-            rel="noreferrer"
-            className="h-[58px] px-6 w-max text-white font-semibold rounded-md flex items-center text-lg bg-[#6CA4D9]"
-          >
-            Read more
-          </a>
-        </div>
+        <img
+          src={article.urlToImage}
+          className="w-[80%] aspect-[4/2] object-cover"
+          alt="article"
+        />
       </div>
     </div>
   );

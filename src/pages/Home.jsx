@@ -12,15 +12,6 @@ export default function Home() {
   console.log(news, '===================')
   const { isLoading: sourcesLoading, isError: sourcesError } =
     useGetSourcesQuery();
-//   if (isError) {
-//     return (
-//       <div className="flex flex-1 w-full items-center justify-center">
-//         <h2 className="text-2xl font-medium">
-//           There was an error while loading news
-//         </h2>
-//       </div>
-//     );
-//   }
   if (isError || sourcesError) {
     return (
       <div className="flex flex-1 w-full items-center justify-center">
@@ -28,22 +19,20 @@ export default function Home() {
       </div>
     );
   }
-  if (isLoading && sourcesLoading) {
-    return (
-      <div className="flex h-screen w-full items-center justify-center">
-        <FadeLoader color="#6CA4D9" />
-      </div>
-    );
-}
+//   if (isLoading && sourcesLoading) {
+//     return (
+//       <div className="flex h-screen w-full items-center justify-center">
+//         <FadeLoader color="#6CA4D9" />
+//       </div>
+//     );
+// }
   return (
     <div className="h-full">
-      <div>
-        <Source openSource={() => {}} />
-      </div>
       <div className="h-full">
         <NewsList
-          news={news}
+          news={news || [0, 1,2,3,4,5,6,7,8,9]}
           search={""}
+          isLoading={isLoading}
           setSelectedArticle={() => {}}
           title={"Trending"}
         />

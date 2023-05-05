@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetArticleFromSourceQuery, useGetSourcesQuery } from "../../features/api/apiSlice";
 import Back from "../../components/Back";
 import NewsList from "../../components/NewsList";
-import { FadeLoader } from "react-spinners";
 
 export default function Source() {
     const { sourceId } = useParams();
@@ -12,9 +11,8 @@ export default function Source() {
     isLoading,
     isError,
   } = useGetArticleFromSourceQuery(sourceId);
-  const { data } = useGetSourcesQuery()
-  const source = data.find((source) => source.id === sourceId);
-  console.log(articles, '===================')
+  const { data, isLoading:sourcesLoading } = useGetSourcesQuery()
+  const source = data?.find((source) => source.id === sourceId);
   if (isError) {
     return (
       <div className="flex flex-1 w-full items-center justify-center">
@@ -22,18 +20,15 @@ export default function Source() {
       </div>
     );
   }
-  return isLoading ? (
-    <div className="flex flex-1 w-full items-center justify-center">
-      <FadeLoader color="#6CA4D9" />
-    </div>
-  ) : (
+  return (
     <>
       <div className="-ml-2">
         <Back handleClick={() => navigate("/")} />
       </div>
       <NewsList
-        news={articles}
+        news={articles || [0,1,2,3,4,5,6,7,8,9]}
         search={""}
+        isLoading={isLoading || sourcesLoading}
         setSelectedArticle={{}}
         viewTrending={() => {}}
         title={source?.name}

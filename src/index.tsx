@@ -12,6 +12,7 @@ import Source from "./pages/sources/Source";
 import SourceArticle from "./pages/sources/SourceArticle"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLDivElement

@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 export default function Source() {
-  const { data, isError } = useGetSourcesQuery();
+  const { data, isError, isLoading } = useGetSourcesQuery();
   const settings = {
     dots: false,
     infinite: true,

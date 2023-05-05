@@ -20,6 +20,7 @@ export const apiSlice = createApi({
             query: (source) => `/articles?source=${source}`,
             transformResponse: (response) => {
                 const articles = response.articles;
+                console.log(articles, '+++++++++++++++++++++++++')
                 return articles.map(article => ({ ...article, id: nanoid() }))
             }
         }),
