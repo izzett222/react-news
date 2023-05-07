@@ -17,6 +17,22 @@ export default function Carousel({ articles, to }) {
   return (
     <div className="w-full">
       <div className="w-full overflow-hidden flex relative">
+        <button
+          className={`bg-white absolute top-[40%] left-2 z-10 p-3 rounded-full ${
+            index < 1 && "bg-opacity-50"
+          }`}
+          onClick={goPrev}
+        >
+          <img src={arrow} className="rotate-180" alt="" />
+        </button>
+        <button
+          className={`bg-white p-3 absolute top-[40%] right-2 z-10 rounded-full ${
+            index === articles.length - 1 && "bg-opacity-50"
+          }`}
+          onClick={goNext}
+        >
+          <img src={arrow} alt="" />
+        </button>
         {articles.map((article) => (
           <motion.div
             animate={{ x: `-${index * 100}%` }}
@@ -31,7 +47,7 @@ export default function Carousel({ articles, to }) {
             />
             <Link
               to={`${to}/${article.id}`}
-              className="block absolute bottom-0 -left-[1px] z-10 bg-white pr-[18px] w-[332px] h-[178px] pl-[18px]"
+              className="block absolute bottom-0 -left-[1px] z-10 bg-white pr-[18px] w-full border-b border-r border-l border-[#454541] border-opacity-10 sm:w-[332px] h-[178px] pl-[18px]"
             >
               <p className="mt-4 mb-2.5">
                 {article.source.name} - {article.publishedAt.slice(0, 10)}
@@ -42,11 +58,21 @@ export default function Carousel({ articles, to }) {
             </Link>
           </motion.div>
         ))}
-        <div className="absolute bottom-4 z-10 right-4 flex gap-4">
-          <button className={`bg-white p-3 rounded-full ${index < 1 && "bg-opacity-50"}`} onClick={goPrev}>
+        <div className="absolute bottom-4 z-10 right-4 sm:flex gap-4 hidden ">
+          <button
+            className={`bg-white p-3 rounded-full ${
+              index < 1 && "bg-opacity-50"
+            }`}
+            onClick={goPrev}
+          >
             <img src={arrow} className="rotate-180" alt="" />
           </button>
-          <button className={`bg-white p-3 rounded-full ${index === articles.length - 1 && "bg-opacity-50"}`} onClick={goNext}>
+          <button
+            className={`bg-white p-3 rounded-full ${
+              index === articles.length - 1 && "bg-opacity-50"
+            }`}
+            onClick={goNext}
+          >
             <img src={arrow} alt="" />
           </button>
         </div>

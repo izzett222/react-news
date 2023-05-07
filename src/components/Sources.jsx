@@ -1,19 +1,22 @@
 import { Link } from "react-router-dom";
 import { useGetSourcesQuery } from "../features/api/apiSlice";
-import Slider from "react-slick";
+import { motion } from "framer-motion";
 import arrow from "../assets/arrow.svg";
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import { useState } from "react";
 
 export default function Source() {
-  const { data, isError, isLoading } = useGetSourcesQuery();
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    variableWidth: true
+  const { data, isError } = useGetSourcesQuery();
+  const [viewed, setViewed] = useState(0);
+  const goForward = () => {
+    console.log("go forward");
+    if (viewed < data.length - 1) {
+      setViewed(viewed + 1);
+    }
+  };
+  const goBack = () => {
+    if (viewed > 0) {
+      setViewed(viewed - 1);
+    }
   };
   if (isError) {
     return (
@@ -23,9 +26,30 @@ export default function Source() {
     );
   }
   return (
-    <div className="border-b-[0.6px] border-b-[#C9C8B2] flex pb-2.5 mb-4">
-      <img src={arrow} alt="" className="rotate-180 -ml-2" />
-      <div className="flex-1 max-w-[97%]">
+    <div className="border-b-[0.6px] border-b-[#C9C8B2] gap-2 grid grid-cols-sources pb-2.5 mb-4">
+      <button onClick={goBack}>
+        <img src={arrow} alt="" className="rotate-180 -ml-2-" />
+      </button>
+      <div className="overflow-hidden">
+        <motion.div
+          animate={{ x: `-${viewed * 100}%` }}
+          transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+          className="h-[20px] flex gap-5"
+        >
+          {data?.map((source) => (
+            <div key={source.id}>
+              <Link
+                to={`/source/${source.id}`}
+                className="hover:underline w-max inline-block"
+              >
+                {source.name}
+              </Link>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* <div className="flex-1 max-w-[100%]">
         <div className="w-full">
         <Slider {...settings}>
 
@@ -43,9 +67,11 @@ export default function Source() {
         </Slider>
         </div>
 
-      </div>
+      </div> */}
 
-      <img src={arrow} alt="" />
+      <button onClick={goForward}>
+        <img src={arrow} alt="" />
+      </button>
     </div>
   );
 }

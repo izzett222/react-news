@@ -9,8 +9,6 @@ import Home from "./pages/Home";
 import Article from "./pages/Article";
 import Source from "./pages/sources/Source";
 import SourceArticle from "./pages/sources/SourceArticle"
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 import 'react-loading-skeleton/dist/skeleton.css'
 import "@reach/dialog/styles.css";
 import Search from "./pages/Search";

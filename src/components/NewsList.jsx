@@ -19,10 +19,10 @@ export default function NewsList({ title, news, isLoading, isTrending, to }) {
           {isLoading ? (
             <Skeleton className="w-full h-[453px]" />
           ) : (
-            <Carousel isTrending={isTrending} to={to} articles={news?.slice(0, 5)} />
+            <Carousel to={to} articles={news?.slice(0, 5)} />
           )}
 
-          <div className="mt-10 flex flex-col gap-4">
+          <div className="mt-10 hidden  lg:flex flex-col gap-4">
             {news?.slice(8, 12).map((article) => {
               if (isLoading) {
                 return (
@@ -38,7 +38,7 @@ export default function NewsList({ title, news, isLoading, isTrending, to }) {
               return (
                 <Link
                   to={`${to}/${article.id}`}
-                  className="flex gap-[30px]"
+                  className="flex gap-4 md:gap-[30px]"
                   key={article.id}
                 >
                   <div className="w-[200px] h-[120px] relative">
@@ -58,8 +58,44 @@ export default function NewsList({ title, news, isLoading, isTrending, to }) {
               );
             })}
           </div>
+          <div className="mt-10 flex lg:hidden flex-col gap-4">
+            {news?.slice(5).map((article) => {
+              if (isLoading) {
+                return (
+                  <div className="flex flex-col xs:flex-row gap-4 md:gap-[30px]">
+                    <Skeleton className="min-w-[200px] h-[120px]" />
+                    <div className="flex-1">
+                      <Skeleton className="w-full h-[36px] mb-3" />
+                      <Skeleton className="w-full h-[24px]" />
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  to={`${to}/${article.id}`}
+                  className="flex flex-col xs:flex-row gap-1  xs:gap-4 md:gap-[30px]"
+                  key={article.id}
+                >
+                  <div className="w-full xs:w-[200px] h-[120px] relative">
+                    <img
+                      src={article.urlToImage}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      alt=""
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-bold text-base leading-[1.3] md:text-lg mb-1 md:mb-3">{article.title}</h4>
+                    <p className="text-[#454541] text-xs lg:text-sm">
+                      {article.description?.slice(0, 90) + "..."}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
-        <div className="w-[300px] flex flex-col gap-6">
+        <div className="flex-1 hidden max-w-[300px] lg:flex flex-col gap-6">
           {news?.slice(5, 8).map((article) => {
             if (isLoading) {
               return (

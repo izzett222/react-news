@@ -36,22 +36,22 @@ export default function Search() {
               <Link
                 to={`/search/${searchValue}/article/${article.id}`}
                 key={article.id}
-                className="flex gap-4 max-w-[700px]"
+                className="flex flex-col sm:flex-row gap-4 max-w-[700px]"
               >
-                <div className="min-w-[200px] h-[120px] relative">
+                <div className="sm:w-[200px] h-[120px] relative">
                   <img
                     src={article.urlToImage}
-                    className="w-full absolute inset-0 object-cover h-full"
+                    className="w-full absolute top-0 bottom-0 right-0 left-0 object-cover h-full"
                     alt="article"
                   />
                 </div>
 
-                <div>
+                <div className="flex-1 ">
                   <h3 className="text-xl leading-[1.15] font-bold text-[#4C4E4D]">
                     {article.title}
                   </h3>
                   <p className="text-[#727674] text-sm mt-1">
-                    {article.author} | {article.publishedAt.slice(0, 10)}
+                    {article?.source?.name} | {article.publishedAt.slice(0, 10)}
                   </p>
                 </div>
               </Link>
