@@ -19,13 +19,6 @@ export default function Home() {
       </div>
     );
   }
-//   if (isLoading && sourcesLoading) {
-//     return (
-//       <div className="flex h-screen w-full items-center justify-center">
-//         <FadeLoader color="#6CA4D9" />
-//       </div>
-//     );
-// }
   return (
     <div className="h-full">
       <div className="h-full">
@@ -35,6 +28,7 @@ export default function Home() {
           isLoading={isLoading}
           setSelectedArticle={() => {}}
           title={"Trending"}
+          to="/article"
         />
       </div>
     </div>

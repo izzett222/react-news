@@ -12,7 +12,6 @@ export const apiSlice = createApi({
             query: () => '/trending',
             transformResponse: (response) => {
                 const articles = response.articles;
-                console.log(articles, '=========    ')
                 return articles.map(article => ({ ...article, id: nanoid() }))
             }
         }),
@@ -20,7 +19,6 @@ export const apiSlice = createApi({
             query: (source) => `/articles?source=${source}`,
             transformResponse: (response) => {
                 const articles = response.articles;
-                console.log(articles, '+++++++++++++++++++++++++')
                 return articles.map(article => ({ ...article, id: nanoid() }))
             }
         }),
@@ -29,6 +27,13 @@ export const apiSlice = createApi({
             transformResponse: (response) => {
                 return response.sources;
             }
+        }),
+        getSearchResults: builder.query({
+            query: (searchTerm) => `/search?query=${searchTerm}`,
+            transformResponse: (response) => {
+                const articles = response.articles;
+                return articles.map(article => ({ ...article, id: nanoid() }))
+            }
         })
     })
 })
@@ -36,4 +41,5 @@ export const {
     useGetFeaturedQuery,
     useGetArticleFromSourceQuery,
     useGetSourcesQuery,
+    useGetSearchResultsQuery
 } = apiSlice;

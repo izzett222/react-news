@@ -32,6 +32,7 @@ export default function Source() {
         setSelectedArticle={{}}
         viewTrending={() => {}}
         title={source?.name}
+        to={`/source/${sourceId}/article`}
       />
     </>
   );

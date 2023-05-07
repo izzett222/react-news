@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Carousel from "./Carousel";
 import Skeleton from "react-loading-skeleton";
-export default function NewsList({ title, news, isLoading }) {
+export default function NewsList({ title, news, isLoading, isTrending, to }) {
   return (
     <div className="">
       {!title && isLoading ? (
@@ -19,7 +19,7 @@ export default function NewsList({ title, news, isLoading }) {
           {isLoading ? (
             <Skeleton className="w-full h-[453px]" />
           ) : (
-            <Carousel articles={news?.slice(0, 5)} />
+            <Carousel isTrending={isTrending} to={to} articles={news?.slice(0, 5)} />
           )}
 
           <div className="mt-10 flex flex-col gap-4">
@@ -37,7 +37,7 @@ export default function NewsList({ title, news, isLoading }) {
               }
               return (
                 <Link
-                  to={`/article/${article.id}`}
+                  to={`${to}/${article.id}`}
                   className="flex gap-[30px]"
                   key={article.id}
                 >
@@ -74,8 +74,9 @@ export default function NewsList({ title, news, isLoading }) {
             return (
               <div key={article.id} className="w-full">
                 <Link
-                  to={`/article/${article.id}`}
+                  to={`${to}/${article.id}`}
                   className="w-full block h-[120px] relative"
+
                 >
                   <img
                     src={article.urlToImage}

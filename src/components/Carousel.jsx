@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import arrow from "../assets/arrow.svg";
 import { useState } from "react";
 import { motion } from "framer-motion";
-export default function Carousel({ articles }) {
+export default function Carousel({ articles, to }) {
   const [index, setIndex] = useState(0);
   const goPrev = () => {
     if (index > 0) {
@@ -30,7 +30,7 @@ export default function Carousel({ articles }) {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <Link
-              to={`/article/${article.id}`}
+              to={`${to}/${article.id}`}
               className="block absolute bottom-0 -left-[1px] z-10 bg-white pr-[18px] w-[332px] h-[178px] pl-[18px]"
             >
               <p className="mt-4 mb-2.5">
