@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom";
 import Carousel from "./Carousel";
 import Skeleton from "react-loading-skeleton";
-export default function NewsList({ title, news, isLoading, isTrending, to }) {
+import { Article } from "../features/api/types";
+
+type Props = {
+  title: string;
+  news: Article[] | number[];
+  isLoading: boolean;
+  to: string;
+};
+export default function NewsList({
+  title,
+  news,
+  isLoading,
+  to,
+}: Props) {
   return (
     <div className="">
       {!title && isLoading ? (
@@ -24,7 +37,7 @@ export default function NewsList({ title, news, isLoading, isTrending, to }) {
 
           <div className="mt-10 hidden  lg:flex flex-col gap-4">
             {news?.slice(8, 12).map((article) => {
-              if (isLoading) {
+              if (isLoading || typeof article === "number") {
                 return (
                   <div className="flex gap-[30px]">
                     <Skeleton className="min-w-[200px] h-[120px]" />
@@ -60,7 +73,7 @@ export default function NewsList({ title, news, isLoading, isTrending, to }) {
           </div>
           <div className="mt-10 flex lg:hidden flex-col gap-4">
             {news?.slice(5).map((article) => {
-              if (isLoading) {
+              if (isLoading || typeof article === "number") {
                 return (
                   <div className="flex flex-col xs:flex-row gap-4 md:gap-[30px]">
                     <Skeleton className="min-w-[200px] h-[120px]" />
@@ -85,7 +98,9 @@ export default function NewsList({ title, news, isLoading, isTrending, to }) {
                     />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-base leading-[1.3] md:text-lg mb-1 md:mb-3">{article.title}</h4>
+                    <h4 className="font-bold text-base leading-[1.3] md:text-lg mb-1 md:mb-3">
+                      {article.title}
+                    </h4>
                     <p className="text-[#454541] text-xs lg:text-sm">
                       {article.description?.slice(0, 90) + "..."}
                     </p>
@@ -97,7 +112,7 @@ export default function NewsList({ title, news, isLoading, isTrending, to }) {
         </div>
         <div className="flex-1 hidden max-w-[300px] lg:flex flex-col gap-6">
           {news?.slice(5, 8).map((article) => {
-            if (isLoading) {
+            if (isLoading || typeof article === "number") {
               return (
                 <div>
                   <Skeleton className="w-full h-[120px] mb-2" />
@@ -112,7 +127,6 @@ export default function NewsList({ title, news, isLoading, isTrending, to }) {
                 <Link
                   to={`${to}/${article.id}`}
                   className="w-full block h-[120px] relative"
-
                 >
                   <img
                     src={article.urlToImage}

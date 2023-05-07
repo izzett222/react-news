@@ -7,6 +7,7 @@ export type Article = {
   title: string;
   url: string;
   urlToImage: string;
+  id:string
 }
 export type Source = {
     id: string;

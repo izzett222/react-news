@@ -1,17 +1,13 @@
 import NewsList from "../components/NewsList";
-import Source from "../components/Sources";
-import Trending from "../components/Trending";
 import {
   useGetFeaturedQuery,
   useGetSourcesQuery,
 } from "../features/api/apiSlice";
-import { FadeLoader } from "react-spinners";
 
 export default function Home() {
-  const { isLoading, isError, data: news } = useGetFeaturedQuery();
-  console.log(news, '===================')
-  const { isLoading: sourcesLoading, isError: sourcesError } =
-    useGetSourcesQuery();
+  const { isLoading, isError, data: news } = useGetFeaturedQuery(undefined);
+  const {  isError: sourcesError } =
+    useGetSourcesQuery(undefined);
   if (isError || sourcesError) {
     return (
       <div className="flex flex-1 w-full items-center justify-center">
@@ -23,11 +19,9 @@ export default function Home() {
     <div className="h-full">
       <div className="h-full">
         <NewsList
-          news={news || [0, 1,2,3,4,5,6,7,8,9]}
-          search={""}
+          title="Trending"
+          news={news || [0,1,2,3,4,5,6,7,8,9]}
           isLoading={isLoading}
-          setSelectedArticle={() => {}}
-          title={"Trending"}
           to="/article"
         />
       </div>
