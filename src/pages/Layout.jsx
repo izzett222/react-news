@@ -14,7 +14,8 @@ export default function Layout() {
   };
   return (
     <>
-      <div className="mx-auto max-w-[1080px] flex flex-col min-h-screen px-4 isolate">
+      <div className="min-h-screen isolate flex flex-col">
+        <div className="mx-auto max-w-[1080px] flex flex-1 flex-col px-4">
         <div className="flex justify-between py-8">
           <div className="relative">
             <div className="absolute right-0 h-14 w-screen bg-[#FFF200]"></div>
@@ -49,7 +50,9 @@ export default function Layout() {
         <div className="flex-1 relative">
           <Outlet />
         </div>
-        <footer className="text-[#4c4e4d] w-screen- bg-[#e9e7e8] border-t-[10px] px-4 border-t-[#fff200] mt-40">
+        </div>
+
+        <footer className="text-[#4c4e4d] bg-[#e9e7e8] border-t-[10px] px-4 border-t-[#fff200] mt-40">
         <div className="mx-auto max-w-[1080px] flex justify-between items-center isolate">
           <h1 className="text-[70px] leading-[1.3] font-extrabold text-[#4C4E4D] py-10">
             <Link>Briefly</Link>
