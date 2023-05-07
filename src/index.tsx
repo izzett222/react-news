@@ -13,13 +13,14 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import "@reach/dialog/styles.css";
 import Search from "./pages/Search";
 import SearchedArticle from "./pages/SearchedArticle";
+import App from "./App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLDivElement
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    {/* <Provider store={store}>
       <Router>
         <Routes>
           <Route element={<Layout />}>
@@ -39,6 +40,7 @@ root.render(
           
         </Routes>
       </Router>
-    </Provider>
+    </Provider> */}
+    <App />
   </React.StrictMode>
 );
