@@ -15,7 +15,7 @@ export default function Layout() {
   return (
     <>
       <div className="min-h-screen isolate flex flex-col">
-        <div className="mx-auto max-w-[1080px] flex flex-1 flex-col px-2 xs:px-4">
+        <div className="mx-auto w-full max-w-[1080px] flex flex-1 flex-col px-2 xs:px-4">
           <div className="flex justify-between py-8">
             <div className="relative">
               <div className="absolute right-0 h-14 w-screen bg-[#FFF200]"></div>
