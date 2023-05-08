@@ -1,10 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
 import search from "../assets/search.svg";
 import SourceSlider from "../components/SourceSlider";
-import { useGetSourcesQuery } from "../features/api/apiSlice";
-import SourceSkeleton from "../components/skeletons/SourceSkeleton";
 import SearchModel from "../components/SearchModel";
 import { useState } from "react";
+import { useGetSourcesQuery } from "../features/api/apiSlice";
+import SourceSkeleton from "../components/skeletons/SourceSkeleton";
 
 export default function Layout() {
   const { isLoading: sourcesLoading } = useGetSourcesQuery(undefined);
