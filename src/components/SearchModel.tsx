@@ -9,7 +9,6 @@ interface SearchModelProps {
   updateOpen: (value?: boolean) => void;
 }
 export default function SearchModel({ open, updateOpen }: SearchModelProps) {
-  // const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
@@ -27,8 +26,10 @@ export default function SearchModel({ open, updateOpen }: SearchModelProps) {
   }, [updateOpen]);
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
+    if (searchValue.trim() === "") return;
+    setSearchValue("");
     updateOpen(false);
-    navigate(`/search?q=${searchValue}`);
+    navigate(`/search?q=${searchValue.trim()}`);
   };
   return open ? (
     <Dialog
