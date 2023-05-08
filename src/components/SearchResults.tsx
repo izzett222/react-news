@@ -11,20 +11,15 @@ export default function SearchResults({ searchValue }: SearchResultsProps) {
   const articles = isLoading ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] : data;
   if (isError) {
     return (
-      <div className="flex flex-1 w-full items-center justify-center">
+      <div className="flex flex-1 w-full items-center justify-center  mt-10 sm:mt-0">
         <h2 className="text-2xl font-medium">No article found</h2>
       </div>
     );
   }
   return (
-    <div>
-      <h2 className="text-[30px] tracking-[-2px] after:block after:bg-[#C1BB25] after:h-2.5 after:w-[72px] relative after:absolute after:bottom-2 font-extrabold mb-2">
-        <span className="relative z-10 text-[#454541]">
-          Search results: {searchValue}
-        </span>{" "}
-      </h2>
+    <>
       {articles?.length === 0 ? (
-        <p>No Articles were found.</p>
+        <p className="mt-3 sm:mt-0">No Articles were found.</p>
       ) : (
         <div className="flex flex-col gap-7">
           {articles?.map((article) => {
@@ -66,6 +61,6 @@ export default function SearchResults({ searchValue }: SearchResultsProps) {
           })}
         </div>
       )}
-    </div>
+    </>
   );
 }
