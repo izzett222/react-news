@@ -23,7 +23,7 @@ export default function Carousel({ articles, to }: CarouselProps) {
     <div className="w-full">
       <div className="w-full overflow-hidden flex relative">
         <button
-          className={`bg-white absolute top-[40%] left-2 z-10 p-3 rounded-full ${
+          className={`bg-white absolute sm:hidden top-[40%] left-2 z-10 p-3 rounded-full ${
             index < 1 && "bg-opacity-50"
           }`}
           onClick={goPrev}
@@ -31,7 +31,7 @@ export default function Carousel({ articles, to }: CarouselProps) {
           <img src={arrow} className="rotate-180" alt="" />
         </button>
         <button
-          className={`bg-white p-3 absolute top-[40%] right-2 z-10 rounded-full ${
+          className={`bg-white sm:hidden p-3 absolute top-[40%] right-2 z-10 rounded-full ${
             index === articles.length - 1 && "bg-opacity-50"
           }`}
           onClick={goNext}
