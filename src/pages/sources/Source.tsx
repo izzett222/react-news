@@ -11,7 +11,7 @@ export default function Source() {
     isLoading,
     isError,
   } = useGetArticleFromSourceQuery(sourceId);
-  const { data, isLoading:sourcesLoading } = useGetSourcesQuery()
+  const { data, isLoading:sourcesLoading } = useGetSourcesQuery(undefined)
   const source = data?.find((source) => source.id === sourceId);
   if (isError) {
     return (
@@ -27,10 +27,7 @@ export default function Source() {
       </div>
       <NewsList
         news={articles || [0,1,2,3,4,5,6,7,8,9]}
-        search={""}
         isLoading={isLoading || sourcesLoading}
-        setSelectedArticle={{}}
-        viewTrending={() => {}}
         title={source?.name}
         to={`/source/${sourceId}/article`}
       />

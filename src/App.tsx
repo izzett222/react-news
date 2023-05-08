@@ -12,6 +12,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import "@reach/dialog/styles.css";
 import Search from "./pages/Search";
 import SearchedArticle from "./pages/SearchedArticle";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -27,10 +28,11 @@ function App() {
             <Route path=":searchQuery/article/:articleId" element={<SearchedArticle />} />
           </Route>
 
-          <Route path="/source/:sourceId" >
+          <Route path="/source/:sourceId">
             <Route index element={<Source />} />
             <Route path="article/:articleId" element={<SourceArticle />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
         
       </Routes>

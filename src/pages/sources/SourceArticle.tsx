@@ -1,19 +1,12 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Back from "../components/Back";
-import { useGetFeaturedQuery } from "../features/api/apiSlice";
+import Back from "../../components/Back";
+import { useGetArticleFromSourceQuery } from "../../features/api/apiSlice";
 
-export default function Article() {
-  const { articleId } = useParams();
+export default function SourceArticle() {
+  const { articleId, sourceId } = useParams();
   const navigate = useNavigate();
-
-  const { data: articles } = useGetFeaturedQuery();
+  const { data: articles } = useGetArticleFromSourceQuery(sourceId);
   const article = articles?.find((article) => article.id === articleId);
-  console.log(
-    articleId,
-    article?.content,
-    article?.content?.length,
-    "===================="
-  );
   const regex = /\[.*\]$/g;
   if (!article) {
     return (
@@ -22,8 +15,16 @@ export default function Article() {
           <h1 className="text-[90px] font-extrabold text-[#4C4E4D] leading-[1]">
             Briefly
           </h1>
-          <h2 className="text-[#4C4E4D] font-medium text-[37px] mt-5 mb-2.5">404 Not found</h2>
-          <p className="text-[27px] text-[#4C4E4D] leading-[1.3]">This page couldn't be found! Visit the <Link to="/" className="underline">Briefly homepage</Link>  if you like.</p>
+          <h2 className="text-[#4C4E4D] font-medium text-[37px] mt-5 mb-2.5">
+            404 Not found
+          </h2>
+          <p className="text-[27px] text-[#4C4E4D] leading-[1.3]">
+            This page couldn't be found! Visit the{" "}
+            <Link to="/" className="underline">
+              Briefly homepage
+            </Link>{" "}
+            if you like.
+          </p>
         </div>
       </div>
     );

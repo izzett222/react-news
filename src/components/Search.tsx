@@ -1,5 +1,9 @@
-export default function Search({ search, setSearch }) {
-  const handleChange = (event) => {
+interface SearchProps {
+  search: string;
+  setSearch: (value: string) => void;
+}
+export default function Search({ search, setSearch }:SearchProps) {
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
   return (

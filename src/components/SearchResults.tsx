@@ -1,14 +1,21 @@
-import { Link, useSearchParams } from "react-router-dom";
-import { useGetSearchResultsQuery } from "../features/api/apiSlice";
 import Skeleton from "react-loading-skeleton";
+import { useGetSearchResultsQuery } from "../features/api/apiSlice";
+import { Link } from "react-router-dom";
 
-export default function Search() {
-  const [searchParam] = useSearchParams();
-  const { data, isLoading } = useGetSearchResultsQuery(
-    encodeURI(searchParam.get("q"))
-  );
-  const searchValue = searchParam.get("q");
-  const articles = data || [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+interface SearchResultsProps {
+  searchValue: string;
+}
+
+export default function SearchResults({ searchValue }: SearchResultsProps) {
+  const { data, isLoading, isError } = useGetSearchResultsQuery(searchValue);
+  const articles = isLoading ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] : data;
+  if (isError) {
+    return (
+      <div className="flex flex-1 w-full items-center justify-center">
+        <h2 className="text-2xl font-medium">No article found</h2>
+      </div>
+    );
+  }
   return (
     <div>
       <h2 className="text-[30px] tracking-[-2px] after:block after:bg-[#C1BB25] after:h-2.5 after:w-[72px] relative after:absolute after:bottom-2 font-extrabold mb-2">
@@ -16,12 +23,12 @@ export default function Search() {
           Search results: {searchValue}
         </span>{" "}
       </h2>
-      {articles.length === 0 ? (
+      {articles?.length === 0 ? (
         <p>No Articles were found.</p>
       ) : (
         <div className="flex flex-col gap-7">
-          {articles.map((article) => {
-            if (isLoading) {
+          {articles?.map((article) => {
+            if (typeof article === "number") {
               return (
                 <div key={article} className="flex gap-4 w-full max-w-[700px]">
                   <Skeleton className="w-[200px] h-[120px]" />

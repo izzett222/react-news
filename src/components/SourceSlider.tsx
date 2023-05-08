@@ -3,12 +3,13 @@ import { useGetSourcesQuery } from "../features/api/apiSlice";
 import { motion } from "framer-motion";
 import arrow from "../assets/arrow.svg";
 import { useState } from "react";
+import { Source } from "../features/api/types";
 
-export default function Source() {
-  const { data, isError } = useGetSourcesQuery();
-  const [viewed, setViewed] = useState(0);
+export default function SourceSlider() {
+  const { data, isError } = useGetSourcesQuery(undefined);
+  const [viewed, setViewed] = useState<number>(0);
   const goForward = () => {
-    console.log("go forward");
+    if (typeof data === "undefined") return;
     if (viewed < data.length - 1) {
       setViewed(viewed + 1);
     }
@@ -36,7 +37,7 @@ export default function Source() {
           transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
           className="h-[20px] flex gap-5"
         >
-          {data?.map((source) => (
+          {data?.map((source:Source) => (
             <div key={source.id}>
               <Link
                 to={`/source/${source.id}`}
@@ -48,27 +49,6 @@ export default function Source() {
           ))}
         </motion.div>
       </div>
-
-      {/* <div className="flex-1 max-w-[100%]">
-        <div className="w-full">
-        <Slider {...settings}>
-
-          {data?.map((source) => (
-            <div key={source.id}>
-              <Link
-                
-                to={`/source/${source.id}`}
-                className="hover:underline w-max mx-2.5 inline-block"
-              >
-                {source.name}
-              </Link>
-            </div>
-          ))}
-        </Slider>
-        </div>
-
-      </div> */}
-
       <button onClick={goForward}>
         <img src={arrow} alt="" />
       </button>

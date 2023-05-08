@@ -30,7 +30,7 @@ export const apiSlice = createApi({
             }
         }),
         getSearchResults: builder.query({
-            query: (searchTerm) => `/search?query=${searchTerm}`,
+            query: (searchTerm:string) => `/search?query=${searchTerm}`,
             transformResponse: (response:Response) => {
                 const articles = response.articles;
                 return articles.map(article => ({ ...article, id: nanoid() }))

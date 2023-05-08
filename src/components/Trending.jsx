@@ -1,6 +1,6 @@
 import { useGetFeaturedQuery } from "../features/api/apiSlice";
 import NewsList from "./NewsList";
-import Source from "./Sources";
+import Source from "./SourceSlider";
 
 
 export default function Trending({

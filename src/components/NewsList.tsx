@@ -4,17 +4,12 @@ import Skeleton from "react-loading-skeleton";
 import { Article } from "../features/api/types";
 
 type Props = {
-  title: string;
+  title: string | undefined;
   news: Article[] | number[];
   isLoading: boolean;
   to: string;
 };
-export default function NewsList({
-  title,
-  news,
-  isLoading,
-  to,
-}: Props) {
+export default function NewsList({ title, news, isLoading, to }: Props) {
   return (
     <div className="">
       {!title && isLoading ? (
@@ -32,7 +27,7 @@ export default function NewsList({
           {isLoading ? (
             <Skeleton className="w-full h-[453px]" />
           ) : (
-            <Carousel to={to} articles={news?.slice(0, 5)} />
+            <Carousel to={to} articles={news?.slice(0, 5) as Article[]} />
           )}
 
           <div className="mt-10 hidden  lg:flex flex-col gap-4">

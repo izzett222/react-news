@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import search from "../assets/search.svg";
-import Source from "../components/Sources";
+import SourceSlider from "../components/SourceSlider";
 import { useGetSourcesQuery } from "../features/api/apiSlice";
 import SourceSkeleton from "../components/skeletons/SourceSkeleton";
 import SearchModel from "../components/SearchModel";
@@ -8,8 +8,8 @@ import { useState } from "react";
 
 export default function Layout() {
   const { isLoading: sourcesLoading } = useGetSourcesQuery(undefined);
-  const [open, setOpen] = useState(false);
-  const updateOpen = (value: boolean) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const updateOpen = (value?: boolean) => {
     setOpen(value || !open);
   };
   return (
@@ -40,7 +40,7 @@ export default function Layout() {
               </div>
             </button>
           </div>
-          <div>{sourcesLoading ? <SourceSkeleton /> : <Source />}</div>
+          <div>{sourcesLoading ? <SourceSkeleton /> : <SourceSlider />}</div>
           <div className="flex-1 relative">
             <Outlet />
           </div>
