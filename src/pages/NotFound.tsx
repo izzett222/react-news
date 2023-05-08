@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
-    <div className="px-5">
+    <div className="px-5 mt-8">
       <div className="max-w-[800px] border border-[#d1d1d1] h-[400px] mx-auto border-t-[10px] border-t-[#4f7177] p-8">
         <h1 className="text-[90px] font-extrabold text-[#4C4E4D] leading-[1]">
           Briefly

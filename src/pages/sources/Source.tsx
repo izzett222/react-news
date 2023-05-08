@@ -4,6 +4,7 @@ import {
   useGetSourcesQuery,
 } from "../../features/api/apiSlice";
 import NewsList from "../../components/NewsList";
+import NotFound from "../NotFound";
 
 export default function Source() {
   const { sourceId } = useParams();
@@ -16,11 +17,7 @@ export default function Source() {
   const source = data?.find((source) => source.id === sourceId);
   if (isError) {
     return (
-      <div className="flex flex-1 w-full items-center justify-center">
-        <h2 className="text-2xl font-medium">
-          There was an error while loading news
-        </h2>
-      </div>
+      <NotFound />
     );
   }
   return (

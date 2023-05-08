@@ -46,7 +46,7 @@ export default function Layout() {
           </div>
         </div>
 
-        <footer className="text-[#4c4e4d] bg-[#e9e7e8] pb-5 xs:pb-0 border-t-[10px] px-4 border-t-[#fff200] mt-40">
+        <footer className="text-[#4c4e4d] bg-[#e9e7e8] pb-5 xs:pb-0 border-t-[10px] px-4 border-t-[#fff200] mt-20">
           <div className="mx-auto max-w-[1080px] flex flex-col justify-center xs:flex-row xs:justify-between items-center isolate">
             <h1 className="text-[50px] leading-[1.2] xs:leading-[1.3] font-extrabold text-[#4C4E4D] py-5 xs:py-10">
               Briefly
