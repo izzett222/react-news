@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useGetSourcesQuery } from "../features/api/apiSlice";
 import { motion } from "framer-motion";
 import arrow from "../assets/arrow.svg";
@@ -46,12 +46,12 @@ export default function SourceSlider() {
         >
           {data?.map((source: Source) => (
             <div key={source.id}>
-              <Link
+              <NavLink
                 to={`/source/${source.id}`}
-                className="hover:underline w-max inline-block"
+                className={({ isActive }) => `hover:underline w-max inline-block ${isActive ? "font-bold" : ""}`}
               >
                 {source.name}
-              </Link>
+              </NavLink>
             </div>
           ))}
         </motion.div>
