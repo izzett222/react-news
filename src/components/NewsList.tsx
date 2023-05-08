@@ -34,8 +34,8 @@ export default function NewsList({ title, news, isLoading, to }: Props) {
             {news?.slice(8, 12).map((article) => {
               if (isLoading || typeof article === "number") {
                 return (
-                  <div className="flex gap-[30px]">
-                    <Skeleton className="min-w-[200px] h-[120px]" />
+                  <div className="flex gap-4 md:gap-[30px]" key={article as number}>
+                    <Skeleton className="w-[200px] h-[120px]" />
                     <div className="flex-1">
                       <Skeleton className="w-full h-[36px] mb-3" />
                       <Skeleton className="w-full h-[24px]" />
@@ -71,7 +71,7 @@ export default function NewsList({ title, news, isLoading, to }: Props) {
               if (isLoading || typeof article === "number") {
                 return (
                   <div className="flex flex-col xs:flex-row gap-4 md:gap-[30px]">
-                    <Skeleton className="min-w-[200px] h-[120px]" />
+                    <Skeleton className="w-full xs:min-w-[200px] h-[120px]" />
                     <div className="flex-1">
                       <Skeleton className="w-full h-[36px] mb-3" />
                       <Skeleton className="w-full h-[24px]" />
