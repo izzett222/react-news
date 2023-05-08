@@ -11,7 +11,7 @@ type Props = {
 };
 export default function NewsList({ title, news, isLoading, to }: Props) {
   return (
-    <div className="">
+    <div>
       {!title && isLoading ? (
         <div className="w-36">
           <Skeleton className="h-8 w-full" />
@@ -46,7 +46,7 @@ export default function NewsList({ title, news, isLoading, to }: Props) {
               return (
                 <Link
                   to={`${to}/${article.id}`}
-                  className="flex gap-4 md:gap-[30px]"
+                  className="flex group gap-4 md:gap-[30px]"
                   key={article.id}
                 >
                   <div className="w-[200px] h-[120px] relative">
@@ -57,7 +57,7 @@ export default function NewsList({ title, news, isLoading, to }: Props) {
                     />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-lg mb-3">{article.title}</h4>
+                    <h4 className="font-bold text-[#4C4E4D] duration-100 group-hover:text-[#333333] text-lg mb-3">{article.title}</h4>
                     <p className="text-[#454541] text-sm">
                       {article.description?.slice(0, 90) + "..."}
                     </p>
@@ -82,7 +82,7 @@ export default function NewsList({ title, news, isLoading, to }: Props) {
               return (
                 <Link
                   to={`${to}/${article.id}`}
-                  className="flex flex-col xs:flex-row gap-1  xs:gap-4 md:gap-[30px]"
+                  className="flex flex-col xs:flex-row gap-1 group xs:gap-4 md:gap-[30px]"
                   key={article.id}
                 >
                   <div className="w-full xs:w-[200px] h-[120px] relative">
@@ -93,7 +93,7 @@ export default function NewsList({ title, news, isLoading, to }: Props) {
                     />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-base leading-[1.3] md:text-lg mb-1 md:mb-3">
+                    <h4 className="font-bold text-[#4C4E4D] duration-100 group-hover:text-[#333333] text-base leading-[1.3] md:text-lg mb-1 md:mb-3">
                       {article.title}
                     </h4>
                     <p className="text-[#454541] text-xs lg:text-sm">
@@ -118,9 +118,9 @@ export default function NewsList({ title, news, isLoading, to }: Props) {
             }
 
             return (
-              <div key={article.id} className="w-full">
-                <Link
-                  to={`${to}/${article.id}`}
+              <Link to={`${to}/${article.id}`} key={article.id} className="w-full group">
+                <div
+                  
                   className="w-full block h-[120px] relative"
                 >
                   <img
@@ -128,16 +128,16 @@ export default function NewsList({ title, news, isLoading, to }: Props) {
                     className="h-full w-full absolute inset-0 object-cover"
                     alt=""
                   />
-                </Link>
+                </div>
                 <div className="mt-3">
-                  <h4 className="text-[24px] font-bold leading-[1.15]">
+                  <h4 className="text-[24px] text-[#4C4E4D] duration-100 group-hover:text-[#333333] font-bold leading-[1.15]">
                     {article.title?.slice(0, 60) + "..."}
                   </h4>
                   <p className="text-[#454541] text-sm mt-3">
                     {article.description?.slice(0, 90) + "..."}
                   </p>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
