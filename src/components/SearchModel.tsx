@@ -40,7 +40,7 @@ export default function SearchModel({ open, updateOpen }: SearchModelProps) {
         minWidth: "310px",
       }}
     >
-      <div className="h-[120px] rounded-sm py-7 px-4 relative">
+      <div className="h-[100px] rounded-sm flex flex-col justify-center px-4 relative">
         <button
           onClick={() => updateOpen(false)}
           className="absolute bg-white w-10 h-10 flex items-center justify-center left-[45%] -top-12 rounded-full"
@@ -48,7 +48,7 @@ export default function SearchModel({ open, updateOpen }: SearchModelProps) {
           <img src={close} className="w-8 h-8" alt="" />
         </button>
         <form
-          className="w-full max-w-[682px] bg-[#F5F5EE] h-14 flex  items-center pl-6"
+          className="w-full max-w-[736px] bg-[#F5F5EE] h-14 flex items-center pl-6"
           onSubmit={handleSubmit}
         >
           <div className="flex gap-2 items-center">
