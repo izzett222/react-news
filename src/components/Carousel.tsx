@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import arrow from "../assets/arrow.svg";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Article } from "../features/api/types";
 interface CarouselProps {
   articles: Article[];
   to: string;

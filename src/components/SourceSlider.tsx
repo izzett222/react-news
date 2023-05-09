@@ -3,7 +3,6 @@ import { useGetSourcesQuery } from "../features/api/apiSlice";
 import { motion } from "framer-motion";
 import arrow from "../assets/arrow.svg";
 import { useRef, useState } from "react";
-import { Source } from "../features/api/types";
 
 export default function SourceSlider() {
   const { data, isError } = useGetSourcesQuery(undefined);

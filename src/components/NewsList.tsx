@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Carousel from "./Carousel";
 import Skeleton from "react-loading-skeleton";
-import { Article } from "../features/api/types";
 
 type Props = {
   title: string | undefined;
